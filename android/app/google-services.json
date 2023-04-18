@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "190561828452",
+    "firebase_url": "https://hiflutter-d7d7c-default-rtdb.firebaseio.com",
+    "project_id": "hiflutter-d7d7c",
+    "storage_bucket": "hiflutter-d7d7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190561828452:android:7d3367870de0e66ec4a971",
+        "android_client_info": {
+          "package_name": "com.example.demofirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190561828452-1mnkif9et6hch5sqa1r309809t0118uh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCohtFhPARNLIHiZoW3KB_o_fz8pOfC9Fg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "190561828452-1mnkif9et6hch5sqa1r309809t0118uh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
