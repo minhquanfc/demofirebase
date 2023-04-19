@@ -10,14 +10,21 @@ class HomeOk extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(16.0),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 1,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           children: [
-            TextField(
-              controller: _textController,
-              decoration: InputDecoration(
-                hintText: 'Enter text',
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: TextField(
+                controller: _textController,
+                decoration: InputDecoration(
+                  hintText: 'Enter text',
+                ),
               ),
             ),
             ElevatedButton(
