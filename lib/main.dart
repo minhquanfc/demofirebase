@@ -1,4 +1,5 @@
-import 'package:demofirebase/screens/homescreen.dart';
+import 'package:demofirebase/screens/AddScreen.dart';
+import 'package:demofirebase/screens/ListItem.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -12,12 +13,13 @@ void main() async {
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -37,9 +39,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
-
   @override
   void initState() {
     // TODO: implement initState
@@ -49,24 +48,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: HomeOk(
-        inSert: inSert,
+      // appBar: AppBar(
+      //   // Here we take the value from the MyHomePage object that was created by
+      //   // the App.build method, and use it to set our appbar title.
+      //   title: Text(widget.title),
+      // ),
+      body: const ListTodo(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddScreen()),
+          );
+        },
+        child: Icon(Icons.add),
       ),
     );
-  }
-
-  void inSert(data) async  {
-    final databaseRef = FirebaseDatabase.instance.ref("Todos");
-    String keyid = databaseRef.push().key!;
-    var datas = {
-      'id':keyid,
-      'title':data
-    };
-    await databaseRef.child(keyid).set(datas);
   }
 }
