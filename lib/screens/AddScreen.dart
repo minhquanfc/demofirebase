@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen( {Key? key}) : super(key: key);
@@ -41,11 +43,7 @@ class _AddScreenState extends State<AddScreen> {
             child: ElevatedButton(
               onPressed: () {
                 String title = _textController.text;
-                if (title.isEmpty) {
-                  print("Vui lòng không để trống");
-                } else {
-                  inSert(title);
-                }
+                inSert(title);
               },
               child: Text("Thêm"),
               style: ButtonStyle(
@@ -63,11 +61,26 @@ class _AddScreenState extends State<AddScreen> {
     );
   }
 
-  void inSert(data) async {
+  void inSert(title) async {
+    if (title.isEmpty) {
+      return showToast("Vui lòng không để trống");
+    }
+    final idUser = FirebaseAuth.instance.currentUser?.uid;
     final databaseRef = FirebaseDatabase.instance.ref().child("Todos");
     String keyid = databaseRef.push().key!;
-    var datas = {'id': keyid, 'title': data,'createdAt':ServerValue.timestamp,};
-    await databaseRef.child(keyid).set(datas);
+    var datas = {'id': keyid, 'title': title,'createdAt':ServerValue.timestamp,};
+    await databaseRef.child(idUser!).child(keyid).set(datas);
     Navigator.pop(context);
+  }
+  void showToast(String text) {
+    Fluttertoast.showToast(
+      msg: text,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.grey[600],
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
   }
 }

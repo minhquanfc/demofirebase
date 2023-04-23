@@ -1,5 +1,6 @@
 import 'package:demofirebase/screens/AddScreen.dart';
 import 'package:demofirebase/screens/ListItem.dart';
+import 'package:demofirebase/screens/Login.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -47,22 +48,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       // appBar: AppBar(
       //   // Here we take the value from the MyHomePage object that was created by
       //   // the App.build method, and use it to set our appbar title.
       //   title: Text(widget.title),
       // ),
-      body: const ListTodo(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AddScreen()),
-          );
-        },
-        child: Icon(Icons.add),
-      ),
+      body: LoginScreen(),
     );
   }
 }

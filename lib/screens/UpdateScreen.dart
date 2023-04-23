@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class UpdateScreen extends StatefulWidget {
   final String id_todo;
@@ -16,6 +17,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
   final _textController = TextEditingController();
   String get id_todo => widget.id_todo;
   String get title => widget.title;
+  final idUser = FirebaseAuth.instance.currentUser?.uid;
 
 
   @override
@@ -78,7 +80,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
   void Update(id,title) async {
     final databaseRef = FirebaseDatabase.instance.ref("Todos");
     var datas = {'title': title};
-    await databaseRef.child(id).update(datas);
+    await databaseRef.child(idUser!).child(id).update(datas);
     Navigator.pop(context);
   }
 }

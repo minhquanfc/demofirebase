@@ -50,6 +50,8 @@ dev_dependencies:
   firebase_auth:
   firebase_database:
   cloud_firestore:
+  fluttertoast:
+  email_validator:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
